@@ -8,8 +8,8 @@ The assset source folder should be moved out of the webroot (set it to ../files 
 ## Setup & Use
 The plugin registers some additional routes to check the asset permissions before it is served to the user. You can serve the asset using its fileid or the url of the file (as defined in the asset-folder configuration)
 
-	- internal/\<fileid\>
-	- internal/\<folder\>/\<filename\>
+	- internal/<fileid>
+	- internal/<folder>/<filename>
 
 I would recommend to create some [environmnentVariables](http://buildwithcraft.com/docs/multi-environment-configs) to store the basepath of your assets folder and the base url of the assets-url for convenient use in the admin-panel.
 
