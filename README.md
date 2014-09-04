@@ -1,4 +1,4 @@
-# Craft CMS: Internal Assets plugin #
+# Craft CMS: Internal Assets Plugin #
 
 ## Description
 A simple plugin to restrict access to assets for permitted users only. Access to a given asset is only granted if the user has view-permissions for the given source (this can be set in the user- or group-settings).
