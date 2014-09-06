@@ -16,12 +16,12 @@ class InternalAssetsPlugin extends BasePlugin
 
     public function getDeveloper()
     {
-        return 'Dr. Ramon Saccilotto, DKF, University Hospital Basel';
+        return 'Dr. Ramon Saccilotto';
     }
 
     public function getDeveloperUrl()
     {
-        return 'http://departementklinischeforschung.ch';
+        return 'https://github.com/tikiatua';
     }
 
     public function hasCpSection()
