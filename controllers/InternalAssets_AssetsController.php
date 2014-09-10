@@ -58,7 +58,9 @@ class InternalAssets_AssetsController extends BaseController {
     {
         // get the path to our file and replace environment specific variables
         // NOTE: this will only get the path to the root folder
-        $path = $file->getSource()->getAttribute('settings')['path'];
+        $settings = $file->getSource()->getAttribute('settings');
+
+        $path = $settings['path'];
 
         // now we have to attach the path to the subfolder
         // NOTE: sub-sub-folders store the path relative to the root (so were good for now)
