@@ -29,6 +29,19 @@ class InternalAssets_AssetsController extends BaseController {
         // create a resolved path from the directory name
         $filePath = craft()->config->parseEnvironmentString($directoryName);
 
+        // Load all transforms to check if the requested file is a transformed version
+        $availableTransforms = craft()->assetTransforms->getAllTransforms();
+        $requestedTransform = '';
+
+        if (count($availableTransforms) > 0) {
+            foreach ($availableTransforms as $transform) {
+                // Check if the file path ends with the handle of the specified transform
+                if (substr($filePath, -strlen($transform->handle)) === $transform->handle) {
+                    $requestedTransform = '_' . $transform->handle;
+                }
+            }
+        }
+
         // first we find all files with matching file names
         $files = $this->_findFilesByName($fileName);
 
@@ -36,7 +49,7 @@ class InternalAssets_AssetsController extends BaseController {
         foreach($files as $file) {
 
             // get the full path to the file directory
-            $path = $this->_getFullDirectoryPath($file);
+            $path = $this->_getFullDirectoryPath($file) . $requestedTransform;
 
             // now will check if our requested filepath matches the files path
             if (strpos($path, $filePath)) {
