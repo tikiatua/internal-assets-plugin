@@ -118,6 +118,14 @@ class InternalAssets_AssetsController extends BaseController {
         // check if the current user has the required permissions
         $hasAccess = craft()->userSession->checkPermission($permission . ':' . $file->sourceId);
 
+        // Fire an 'onBeforeSendFile' event
+        $event = new Event($this, array(
+            'hasAccess' => &$hasAccess,
+            'asset'   => &$file,
+        ));
+
+        craft()->internalAssets->onBeforeSendFile($event);
+
         if ($hasAccess) {
 
             // get the files mime type
