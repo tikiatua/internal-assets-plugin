@@ -32,8 +32,8 @@ return array(
 You can then use placeholders in the assets configuration.
 
 	i.e. for a asset folder called documents
-	- directory: {internalAssetsPath}/documents/
-	- url: {internalAssetsUrl}/documents/
+	- directory: {internalAssetsPath}documents/
+	- url: {internalAssetsUrl}documents/
 
 
 
