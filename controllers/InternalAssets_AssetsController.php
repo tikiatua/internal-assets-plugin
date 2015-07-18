@@ -14,8 +14,8 @@ class InternalAssets_AssetsController extends BaseController {
             $this->_sendFile($file);
         }
         else {
-            // TODO: redirect to 404 page
-            CRAFT::dd('File not found');
+            // throw a 404 exception
+            throw new HttpException(404, "File not found or permission denied");
         }
     }
 
@@ -62,8 +62,8 @@ class InternalAssets_AssetsController extends BaseController {
             }
         }
 
-        // TODO: redirect to 404 page
-         Craft::dd("File not found");
+        // throw a 404 exception
+        throw new HttpException(404, "File not found or permission denied");
 
     }
 
@@ -153,7 +153,8 @@ class InternalAssets_AssetsController extends BaseController {
 
         }
         else {
-            CRAFT::dd("Permission denied");
+            // throw a 404 exception
+            throw new HttpException(404, "File not found or permission denied");
         }
 
     }
