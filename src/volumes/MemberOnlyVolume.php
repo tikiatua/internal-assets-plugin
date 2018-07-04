@@ -32,6 +32,11 @@ class MemberOnlyVolume extends \craft\volumes\Local
 	{
 		$userDefinedRootUrl = parent::getRootUrl();
 
+		// Note: make url adaption more robust by parsing the url elements
+		// and rebuilding it again. Should also correctly handle aliases such as
+		// @web.
+		// $url = parse_url($userDefinedRootUrl);
+
 		// strip any prefix
 		$userDefinedRootUrl = ltrim($userDefinedRootUrl, '/');
 		$userDefinedRootUrl = ltrim($userDefinedRootUrl, '//');
