@@ -87,7 +87,7 @@ class DefaultController extends Controller
         }
 
         // viewvolume permissions are required to access the volume
-        $volumePermission = 'viewvolume:' . $volume['id'];
+        $volumePermission = 'viewvolume:' . $volume['uid'];
 
         // get the current user session
         $currentUser = Craft::$app->getUser();
