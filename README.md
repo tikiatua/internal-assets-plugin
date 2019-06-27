@@ -9,4 +9,5 @@ The asset source folder should be moved out of the web root folder so the files 
 This plugin requires Craft CMS 3.0.0-beta.23 or later.
 
 ## Author
+
 Brought to you by [Ramon Saccilotto](https://github.com/tikiatua)
