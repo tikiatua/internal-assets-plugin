@@ -87,6 +87,8 @@ class DefaultController extends Controller
         }
 
         // viewvolume permissions are required to access the volume
+        // note: check for volume permission was changed from id to uid
+        // thanks to @jackgringo for the fix.
         $volumePermission = 'viewvolume:' . $volume['uid'];
 
         // get the current user session
@@ -95,6 +97,13 @@ class DefaultController extends Controller
         // check if the user is allowed to access the volume
         $accessGranted = $currentUser->checkPermission($volumePermission);
 
+        // fallback to check permission with volume id instead of uid
+        if ($accessGranted === false) {
+            $volumePermission = 'viewvolume:' . $volume['id'];
+            $accessGranted = $currentUser->checkPermission($volumePermission);
+        }
+
+        // permissions are still not granted
         if ($accessGranted === false) {
             throw new HttpException(404, "Sorry. File not found or permission denied");
             return;
