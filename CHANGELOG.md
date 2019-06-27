@@ -7,3 +7,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.0.0 - 2018-06-12
 ### Added
 - Initial release
+
+## 2.3.1 - 2019-06-28
+- Fix permission check
