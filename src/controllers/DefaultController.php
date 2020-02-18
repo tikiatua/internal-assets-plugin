@@ -86,18 +86,26 @@ class DefaultController extends Controller
             return;
         }
 
-        // viewvolume permissions are required to access the volume
-        $volumePermission = 'viewvolume:' . $volume['id'];
-
         // get the current user session
         $currentUser = Craft::$app->getUser();
 
-        // check if the user is allowed to access the volume
-        $accessGranted = $currentUser->checkPermission($volumePermission) || $currentUser->getIsAdmin();
+        $accessGranted = $currentUser->getIsAdmin();
 
-        // fallback to check permission with volume uid instead of id
         if ($accessGranted === false && isset($volume['uid'])) {
+
+            // viewvolume permissions are required to access the volume
+            // note: check for volume permission was changed from id to uid
+            // thanks to @jackgringo for the fix.
             $volumePermission = 'viewvolume:' . $volume['uid'];
+
+            // check if the user is allowed to access the volume
+            $accessGranted = $currentUser->checkPermission($volumePermission);
+        }
+
+
+        // fallback to check permission with volume id instead of uid
+        if ($accessGranted === false && isset($volume['id'])) {
+            $volumePermission = 'viewvolume:' . $volume['id'];
             $accessGranted = $currentUser->checkPermission($volumePermission);
         }
 
