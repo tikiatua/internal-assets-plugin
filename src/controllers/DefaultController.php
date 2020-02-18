@@ -86,19 +86,25 @@ class DefaultController extends Controller
             return;
         }
 
-        // viewvolume permissions are required to access the volume
-        // note: check for volume permission was changed from id to uid
-        // thanks to @jackgringo for the fix.
-        $volumePermission = 'viewvolume:' . $volume['uid'];
-
         // get the current user session
         $currentUser = Craft::$app->getUser();
 
-        // check if the user is allowed to access the volume
-        $accessGranted = $currentUser->checkPermission($volumePermission);
+        $accessGranted = $currentUser->getIsAdmin();
+
+        if ($accessGranted === false && isset($volume['uid'])) {
+
+            // viewvolume permissions are required to access the volume
+            // note: check for volume permission was changed from id to uid
+            // thanks to @jackgringo for the fix.
+            $volumePermission = 'viewvolume:' . $volume['uid'];
+
+            // check if the user is allowed to access the volume
+            $accessGranted = $currentUser->checkPermission($volumePermission);
+        }
+
 
         // fallback to check permission with volume id instead of uid
-        if ($accessGranted === false) {
+        if ($accessGranted === false && isset($volume['id'])) {
             $volumePermission = 'viewvolume:' . $volume['id'];
             $accessGranted = $currentUser->checkPermission($volumePermission);
         }
@@ -111,7 +117,7 @@ class DefaultController extends Controller
 
         // generate the filesystem path to the file
         $filepath = ltrim($path, $volumeUrl);
-        $filepath = $volume['path'] . $filepath;
+        $filepath = Craft::getAlias($volume['path']) . $filepath;
         $filepath = FileHelper::normalizePath($filepath);
 
         // get only the filename
