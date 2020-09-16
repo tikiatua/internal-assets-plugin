@@ -10,3 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.3.1 - 2019-06-28
 - Fix permission check
+
+## 2.3.2 - 2020-09-16
+- Fix null append error
