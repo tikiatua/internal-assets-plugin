@@ -58,6 +58,10 @@ class DefaultController extends Controller
     public function actionFetch(string $path)
     {
 
+        // stop content-type from being overridden
+        // https://github.com/craftcms/cms/issues/4716
+        Craft::$app->response->format = \yii\web\Response::FORMAT_RAW;
+
         // find the volume by the given path
         $volumes = Craft::$app->getVolumes();
         $publicVolumes = $volumes->getPublicVolumes();
@@ -135,7 +139,8 @@ class DefaultController extends Controller
             header('Accept-Ranges: bytes');
         }
         else {
-            header('Content-type: '. $mimeType);
+            header('Content-type: '.' $mimeType');
+            header('Content-Length: ' . filesize($filepath));
         }
 
         // NOTE: we could also use file_get_contents($filepath)
