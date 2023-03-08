@@ -52,5 +52,6 @@ The following additional features are currently planned
 
 * Allow the use of image transformations on assets (currently not supported)
 * Enable custom path prefixes for internal assets
+* Support mp4 files on mobile devices
 
 Brought to you by [Ramon Saccilotto](https://github.com/tikiatua)
