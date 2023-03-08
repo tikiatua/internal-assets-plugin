@@ -7,8 +7,6 @@ A simple plugin to restrict access to assets for permitted users only. Access to
 The asset source folder should be moved out of the web root folder so the files 
 are never accessible without this plugin.
 
-![Screenshot](resources/img/plugin-logo.png)
-
 ## Requirements
 
 This plugin was tested with Craft CMS Version 4.4, but should work with any
