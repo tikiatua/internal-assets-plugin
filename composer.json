@@ -2,7 +2,7 @@
     "name": "saccilottoconsulting/craft-internal-assets",
     "description": "A simple plugin to restrict access to assets for permitted users only. Access to a given asset is only granted if the user has view-permissions for the given source (this can be set in the user- or group-settings). The asset source folder should be moved out of the web root folder so the files are never accessible without this plugin.",
     "type": "craft-plugin",
-    "version": "2.3.2",
+    "version": "4.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -13,7 +13,8 @@
     ],
     "support": {
         "docs": "https://github.com/tikiatua/internal-assets/blob/master/README.md",
-        "issues": "https://github.com/tikiatua/internal-assets/issues"
+        "issues": "https://github.com/tikiatua/internal-assets/issues?state=open",
+        "source": "https://github.com/tikiatua/internal-assets"
     },
     "license": "MIT",
     "authors": [
@@ -23,7 +24,8 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1"
+        "craftcms/cms": "^4.0",
+        "php": "^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +37,6 @@
         "handle": "internal-assets",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/tikiatua/internal-assets/master/CHANGELOG.md",
-        "class": "saccilottoconsulting\\internalassets\\InternalAssets"
+        "changelogUrl": "https://raw.githubusercontent.com/tikiatua/internal-assets/master/CHANGELOG.md"
     }
 }
