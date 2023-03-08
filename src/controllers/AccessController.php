@@ -53,7 +53,6 @@ class AccessController extends Controller
             $volumeUrl = $volume->rootUrl;
 
             // strip any prefixing slashes
-            $volumeUrl = ltrim($volumeUrl, '//');
             $volumeUrl = ltrim($volumeUrl, '/');
             
             // stripy anx suffix slashes from the volume url
@@ -82,7 +81,7 @@ class AccessController extends Controller
         $fs = $targetVolume->fs;
 
         // get the path of the asset relative to the root url of the volume
-        $filepath = ltrim($path, $volumeUrl);
+        $filepath = substr($path, strlen($volumeUrl));
 
         // replace any / with directory spearators if we are using the local
         // filesystem interface by CraftCMS
