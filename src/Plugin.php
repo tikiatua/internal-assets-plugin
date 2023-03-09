@@ -35,21 +35,6 @@ class Plugin extends \craft\base\Plugin
         parent::init();
         
         Event::on(
-            UserPermissions::class, 
-            UserPermissions::EVENT_REGISTER_PERMISSIONS, 
-            function(RegisterUserPermissionsEvent $event) {
-                $event->permissions[] = [
-                    "heading" => "Volume Permissions",
-                    "permissions" => [
-                        "permissionName" => [
-                            "label" => "Allow access to permissions"
-                        ]
-                    ]
-                ];
-            }
-        );
-
-        Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
