@@ -110,7 +110,16 @@ class AccessController extends Controller
         $mimeType = FileHelper::getMimeTypeByExtension($filename);
 
         // display pdfs inline
-        $inline = $mimeType == "application/pdf";
+        $inline = false;
+        if ($mimeType == "application/pdf") {
+            $inline = true;
+        }
+        if (str_starts_with($mimeType, "image/")) {
+            $inline = true;
+        }
+        if (str_starts_with($mimeType, "video/")) {
+            $inline = true;
+        }
 
         $stream = $fs->getFileStream($filepath);
         return $this->response->sendStreamAsFile($stream, $filename, [

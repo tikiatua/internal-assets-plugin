@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.1 - 2023-03-27
+## Changed
+- Use Content-Dispositon inline for pdfs, images and videos to open the respective
+  assets directly in the browser instead of downloading them.
+
 ## 4.1.0 - 2023-03-27
 ## Changed
 - Use streamAsFile method to return file content to browser, this should
