@@ -100,8 +100,6 @@ class AccessController extends Controller
             return;
         }
 
-        // $filepath = $volume['path'] . $filepath;
-
         // get only the filename
         $filename = basename($filepath);
 
@@ -111,28 +109,15 @@ class AccessController extends Controller
         // get the files mime type
         $mimeType = FileHelper::getMimeTypeByExtension($filename);
 
-        // use an optimized header for pdfs
-        if ($mimeType == "application/pdf") {
-            header('Content-type: application/pdf');
-            header('Content-Disposition: inline; filename="' . $filename . '"');
-            header('Content-Transfer-Encoding: binary');
-            header('Content-Length: ' . $filesize);
-            header('Accept-Ranges: bytes');
-        }
-        else {
-            header('Content-type: '. $mimeType);
-        }
+        // display pdfs inline
+        $inline = $mimeType == "application/pdf";
 
-        // disable any output buffering
-        ob_implicit_flush(1);
-        // ob_end_flush();
-
-        // pass the content of the file to the browser. the use of fpassthrough
-        // allows us to operate on the file stream without reading the complete
-        // file contents into memory
         $stream = $fs->getFileStream($filepath);
-        fpassthru($stream);
-        fclose($stream);
+        return $this->response->sendStreamAsFile($stream, $filename, [
+            'fileSize' => $filesize,
+            'mimeType' => $mimeType,
+            'inline'   => $inline
+        ]);
 
     }
 
