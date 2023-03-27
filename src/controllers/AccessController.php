@@ -25,7 +25,7 @@ use yii\web\HttpException;
 *
 * @author    Ramon Saccilotto
 * @package   InternalAssets
-* @since     4.0.0
+* @since     4.1.0
 */
 class AccessController extends Controller
 {
